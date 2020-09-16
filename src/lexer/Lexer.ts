@@ -1,11 +1,7 @@
-import {RESERVED} from "./LexerRules";
-
+import {RESERVED} from "./helpers/LexerRules";
 const Lexer = require("lex");
-// const Parser = require("jison").Parser;
 
-
-export function LuaFrontend() {
-    // const parser = new Parser(); // TODO: подать грамматику
+export function lexer() {
     const lexer = new Lexer();
 
     lexer.addRule(/(\'.*\')|(\".*\")/, function (lexeme:string) {
@@ -198,25 +194,7 @@ export function LuaFrontend() {
     lexer.addRule(/\t/, function () {});
     lexer.addRule(/\s/, function () {});
 
-
-    lexer.setInput("local function sayHello()\n" +
-        "print(\"hello world !\")\n" +
-        "end\n" +
-        "\n" +
-        "sayHello()\n" +
-        "l = -2\n" +
-        "q = 3\n" +
-        "print(-l + q)");
-
-    const tokens = [];
-    while (true) {
-        const el = lexer.lex();
-        if (!el) {
-            break;
-        }
-        tokens.push(el);
-    }
-    console.log(tokens);
+    return lexer;
 }
 
 

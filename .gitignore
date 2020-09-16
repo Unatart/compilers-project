@@ -11,6 +11,8 @@
 # production
 /build
 
+/src/lexer/generated_parser/*
+
 # misc
 .DS_Store
 .env.local
