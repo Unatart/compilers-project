@@ -1,23 +1,25 @@
+import {TokensTypes} from "./LexerRules";
+import {logger} from "../helpers";
+
 export class Chunk {
-    // TODO: тип
-    constructor(private block:any) {
-        console.log("Chunk", block);
+    constructor(private block:Block) {
+        logger.parserLog("Chunk:", [block]);
     }
 }
 
 export class Block {
-    constructor(private statements:any, private return_statement?:any) {
-        console.log("Block", statements, return_statement);
+    constructor(private statements:StatementList, private return_statement?:ReturnStatement) {
+        logger.parserLog("Block:", [statements, return_statement]);
     }
 }
 
 interface IStatementList {
-    statements:any[];
+    statements:Statement[];
 }
 
 export class StatementList {
-    constructor(private statement?:any, private statement_list?:IStatementList) {
-        console.log("StatementList", statement, statement_list);
+    constructor(statement?:Statement, statement_list?:IStatementList) {
+        logger.parserLog("StatementList:", [statement, statement_list]);
         if (statement) {
             this.statements.push(statement);
         }
@@ -26,37 +28,37 @@ export class StatementList {
         }
     }
 
-    private statements:any[] = [];
+    private statements:Statement[] = [];
 }
 
 interface IVariableList {
-    variables:any[]
+    variables:Variable[]
 }
 
 export class VariableList {
-    constructor(private variable:any, private variable_list?:IVariableList) {
-        console.log("VariableList", variable, variable_list);
+    constructor(variable:Variable, variable_list?:IVariableList) {
+        logger.parserLog("VariableList:", [variable, variable_list]);
         this.variables.push(variable);
         if (variable_list) {
             this.variables.push(...variable_list.variables)
         }
     }
-    private variables:any[] = [];
+    private variables:Variable[] = [];
 }
 
 interface IExpressionList {
-    expressions:any[];
+    expressions:Expression[];
 }
 
 export class ExpressionList {
-    constructor(private expression:any, private expression_list?:IExpressionList) {
-        console.log("ExpressionList", expression, expression_list);
+    constructor(expression:Expression, expression_list?:IExpressionList) {
+        logger.parserLog("ExpressionList:", [expression, expression_list]);
         this.expressions = [expression];
         if (expression_list) {
             this.expressions.push(...expression_list.expressions);
         }
     }
-    private expressions:any[] = [];
+    private expressions:Expression[] = [];
 }
 
 interface INameList {
@@ -64,8 +66,8 @@ interface INameList {
 }
 
 export class NameList {
-    constructor(private name:string, private name_list?:INameList) {
-        console.log("NameList", name, name_list);
+    constructor(name:string, name_list?:INameList) {
+        logger.parserLog("NameList:", [name, name_list]);
         this.names = [name];
         if (name_list) {
             this.names.push(...name_list.names);
@@ -76,38 +78,38 @@ export class NameList {
 }
 
 export class Assignment {
-    constructor(private variable_list:IVariableList, private expression_list:IExpressionList) {
-        console.log("Assignment", variable_list, expression_list);
+    constructor(private variable_list:VariableList, private expression_list:ExpressionList) {
+        logger.parserLog("Assignment:", [variable_list, expression_list]);
     }
 }
 
 export class DoBlock {
-    constructor(private block:any) {
-        console.log("DoBlock", block);
+    constructor(private block:Block) {
+        logger.parserLog("DoBlock:", [block]);
     }
 }
 
 export class WhileLoop {
-    constructor(private expression:any, private block:any) {
-        console.log("WhileLoop", expression, block);
+    constructor(private expression:Expression, private block:Block) {
+        logger.parserLog("WhileLoop:", [expression, block]);
     }
 }
 
 export class RepeatLoop {
-    constructor(private block:any, private expression:any) {
-        console.log("RepeatLoop", block, expression);
+    constructor(private block:Block, private expression:Expression) {
+        logger.parserLog("RepeatLoop:", [block, expression]);
     }
 }
 
 export class Goto {
     constructor(private name:string) {
-        console.log("GOTO", name);
+        logger.parserLog("GOTO:", [name]);
     }
 }
 
 export class IfItem {
-    constructor(private block:any, private expression?:any) {
-        console.log("IfItem", block, expression);
+    constructor(private block:Block, private expression?:Expression) {
+        logger.parserLog("IfItem:", [block, expression]);
     }
 }
 
@@ -116,8 +118,8 @@ interface IIfList {
 }
 
 export class IfList {
-    constructor(private elseif_item:any = undefined, elseif_list?:IIfList) {
-        console.log("IfList:", elseif_item, elseif_list);
+    constructor(elseif_item:any = undefined, elseif_list?:IIfList) {
+        logger.parserLog("IfList:", [elseif_item, elseif_list]);
         if (elseif_item) {
             this.sequence.push(elseif_item);
         }
@@ -129,8 +131,8 @@ export class IfList {
 }
 
 export class If {
-    constructor(private expression:any, private block:any, elseif_list?:IIfList, last_block?:any) {
-        console.log("If", expression, block, elseif_list, last_block);
+    constructor(expression:Expression, block:Block, elseif_list?:IIfList, last_block?:Block) {
+        logger.parserLog("If:", [expression, block, elseif_list, last_block]);
         this.sequence.push(new IfItem(block, expression));
         if (elseif_list) {
             this.sequence.push(...elseif_list.sequence);
@@ -143,87 +145,103 @@ export class If {
 }
 
 export class ForLoopStart {
-    constructor(private name?:string, private expression?:any) {
-        console.log("ForLoopStart", name, expression);
+    constructor(private name?:string, private expression?:Expression) {
+        logger.parserLog("ForLoopStart:", [name, expression]);
     }
 }
 
 export class ForLoop {
-    constructor(private name:string, private expression:any, private end_condition:any, private block:any, private repeated_exp?:any) {
-        console.log("ForLoop", name, expression, end_condition, block, repeated_exp);
+    constructor(name:string, expression:Expression, private end_condition:any, private block:Block, private repeated_exp?:any) {
+        logger.parserLog("ForLoop:", [name, expression, end_condition, block, repeated_exp]);
         this.start_assignment = new ForLoopStart(name, expression);
     }
     private start_assignment:ForLoopStart;
 }
 
 export class RangeBasedFor {
-    constructor(private names:string[], private expressions:any, private block:any) {
-        console.log("RangeBasedFor", names, expressions, block);
+    constructor(private names:string[], private expressions:Expression, private block:Block) {
+        logger.parserLog("RangeBasedFor:", [names, expressions, block]);
     }
 }
 
 export class Function {
-    constructor(private func_body:any, private func_name_chain:INameChain, private func_name?:string) {
-        console.log("Function", func_name, func_body);
+    constructor(private func_body:FuncBody, func_name_chain:INameChain, func_name?:string) {
+        logger.parserLog("Function:", [func_name, func_body]);
         this.funcname = new FuncName(func_name_chain, func_name);
     }
     private funcname:FuncName;
 }
 
 export class LocalFunction {
-    constructor(private func_name:string, private func_body:any) {
-        console.log("LocalFunction", func_name, func_body);
+    constructor(private func_name:FuncName, private func_body:FuncBody) {
+        logger.parserLog("LocalFunction:", [func_name, func_body]);
     }
 }
 
 export class Attribute {
     constructor(private name?:string) {
-        console.log("Attribute", name);
+        logger.parserLog("Attribute:", [name]);
     }
 }
 
 export class ObjectAttribute {
-    constructor(private object_name?:string, private attribute?:any) {
-        console.log("ObjectAttribute", object_name, attribute);
+    constructor(private object_name?:string, private attribute?:Attribute) {
+        logger.parserLog("ObjectAttribute:", [object_name, attribute]);
     }
 }
 
 interface IObjectAttributeList {
-    object_attributes:any[]
+    object_attributes:ObjectAttribute[]
 }
 
 export class ObjectAttributeList {
-    constructor(private attribute:any, private object_attribute_list?:IObjectAttributeList) {
-        console.log("ObjectAttributeList", attribute, object_attribute_list);
+    constructor(attribute:ObjectAttribute, object_attribute_list?:IObjectAttributeList) {
+        logger.parserLog("ObjectAttributeList:", [attribute, object_attribute_list]);
         this.object_attributes = [attribute];
         if (object_attribute_list) {
             this.object_attributes.push(...object_attribute_list.object_attributes);
         }
     }
-    private object_attributes:any[] = [];
+    private object_attributes:ObjectAttribute[] = [];
 }
 
 export class LocalObjectAttributeListAssignment {
-    constructor(private object_attributes:any, private expressions?:any) {
-        console.log("LocalObjectAttributeListAssignment", object_attributes, expressions);
+    constructor(private object_attributes:ObjectAttributeList, private expressions?:any) {
+        logger.parserLog("LocalObjectAttributeListAssignment:", [object_attributes, expressions]);
     }
 }
 
+type StatementType = "SEMICOLON" |
+    "BREAK" |
+    Assignment |
+    FunctionCall |
+    Label |
+    Goto |
+    DoBlock |
+    WhileLoop |
+    RepeatLoop |
+    If |
+    ForLoop |
+    RangeBasedFor |
+    Function |
+    LocalFunction |
+    LocalObjectAttributeListAssignment;
+
 export class Statement {
-    constructor(private statement:any) {
-        console.log("Statement", statement);
+    constructor(private statement:StatementType) {
+        logger.parserLog("Statement:", [statement]);
     }
 }
 
 export class ReturnStatement {
-    constructor(private expressions?:any) {
-        console.log("ReturnStatement", expressions);
+    constructor(private expressions?:Expression) {
+        logger.parserLog("ReturnStatement:", [expressions]);
     }
 }
 
 export class Label {
     constructor(private name:string) {
-        console.log("Label", name);
+        logger.parserLog("Label:", [name]);
     }
 }
 
@@ -232,8 +250,8 @@ interface INameChain {
 }
 
 export class NameChain {
-    constructor(private name:string, private name_chain?:INameChain) {
-        console.log("NameChain", name, name_chain);
+    constructor(name:string, name_chain?:INameChain) {
+        logger.parserLog("NameChain:", [name, name_chain]);
         this.names = [name];
         if (name_chain) {
             this.names.push(...name_chain.names);
@@ -243,8 +261,8 @@ export class NameChain {
 }
 
 export class FuncName {
-    constructor(private name_chain:INameChain, private name?:string) {
-        console.log("FuncName", name_chain, name);
+    constructor(private name_chain:INameChain, name?:string) {
+        logger.parserLog("FuncName:", [name_chain, name]);
         if (name) {
             this.name_chain.names.push(name);
         }
@@ -252,67 +270,67 @@ export class FuncName {
 }
 
 export class ObjectField {
-    constructor(private object_name:string, private field:any) {
-        console.log("ObjectField", object_name, field);
+    constructor(private object_name:PrefixExpression, private field:Expression | Name) {
+        logger.parserLog("ObjectField:", [object_name, field]);
     }
 }
 
 
 export class Variable {
-    constructor(private identifier:any) {
-        console.log("Variable", identifier);
+    constructor(private identifier:Name | ObjectField) {
+        logger.parserLog("Variable:", [identifier]);
     }
 }
 
 export class PrefixExpression {
-    constructor(private expression:any) {
-        console.log("PrefixExpression", expression);
+    constructor(private expression:Expression) {
+        logger.parserLog("PrefixExpression:", [expression]);
     }
 }
 
 export class FunctionCall {
-    constructor(private prefix:any, private args:any, private name?:string) {
-        console.log("FuncCall", prefix, args, name);
+    constructor(private prefix:PrefixExpression, private args:Args, private name?:Name) {
+        logger.parserLog("FuncCall:", [prefix, args, name]);
     }
 }
 
 export class Args {
     constructor(private args:any = []) {
-        console.log("Args", args);
+        logger.parserLog("Args:", [args]);
     }
 }
 
 export class FunctionDef {
-    constructor(private body:any) {
-        console.log("FuncDef", body);
+    constructor(private body:FuncBody) {
+        logger.parserLog("FuncDef:", [body]);
     }
 }
 
 export class FuncBody {
-    constructor(private block:any, private parlist?:any) {
-        console.log("FuncBody", block, parlist);
+    constructor(private block:Block, private parlist?:ParList) {
+        logger.parserLog("FuncBody:", [block, parlist]);
     }
 }
 
 export class ParList {
-    constructor(private vararg?:boolean, private namelist?:any) {
-        console.log("ParList", vararg, namelist);
+    constructor(private vararg?:boolean, private namelist?:NameList) {
+        logger.parserLog("ParList:", [vararg, namelist]);
     }
 }
 
 export class TableConstructor {
-    constructor(private fieldlist?:any) {
-        console.log("TableConstructor", fieldlist);
+    constructor(private fieldlist?:FieldList) {
+        logger.parserLog("TableConstructor:", [fieldlist]);
     }
 }
 
 interface IFieldList {
-    fields:any[]
+    fields:Field[]
 }
 
 export class FieldList {
-    constructor(private field?:any, private inner_fields?:IFieldList) {
-        console.log("FieldList", field, inner_fields);
+    constructor(private field?:Field, private inner_fields?:IFieldList) {
+        logger.parserLog("FieldList:", [field, inner_fields]);
         if (field) {
             this.fields.push(field);
         }
@@ -321,47 +339,56 @@ export class FieldList {
         }
     }
 
-    private fields:any[] = [];
+    private fields:Field[] = [];
 }
 
 export class Field {
-    constructor(private value:any, private identifier?:any) {
-        console.log("Field", value, identifier);
+    constructor(private value:Expression, private identifier?:Expression | Name) {
+        logger.parserLog("Field:", [value, identifier]);
     }
 }
 
+type ExpressionType = Number |
+    LiteralString |
+    FunctionDef |
+    TableConstructor |
+    BinaryOp |
+    UnaryOp |
+    PrefixExpression |
+    "VARARG" | "FALSE" | "TRUE";
+
 export class Expression {
-    constructor(private expression:any) {
-        console.log("Expression", expression);
+    constructor(private expression:ExpressionType) {
+        logger.parserLog("Expression:", [expression]);
     }
 }
 
 export class BinaryOp {
-    constructor(private left:any, private right:any, private operation:any) {
-        console.log("BinaryOp", left, right, operation);
+    constructor(private left:Expression, private right:Expression, private operation:TokensTypes) {
+        logger.parserLog("BinaryOp:", [left, right, operation]);
     }
 }
 
 export class UnaryOp {
-    constructor(private expression:any, private operation:any) {
-        console.log("UnaryOp", expression, operation);
+    constructor(private expression:Expression, private operation:TokensTypes) {
+        logger.parserLog("UnaryOp:", [expression, operation]);
     }
 }
 
 export class Name {
     constructor(private name:string) {
-        console.log("Name", name);
+        logger.parserLog("Name:", [name]);
     }
 }
 
 export class LiteralString {
     constructor(private literal_string:string) {
-        console.log("LiteralString", literal_string);
+        logger.parserLog("LiteralString:", [literal_string]);
     }
 }
 
 export class Number {
     constructor(private number:number) {
-        console.log("Number", number);
+        logger.parserLog("Number:", [number]);
     }
 }

@@ -213,7 +213,7 @@ export const grammar = {
  * Need to replace this generated file in this project!
  */
 export function createParser() {
-    const parser_generator = new jison.Generator(grammar);
+    const parser_generator = new jison.Generator(grammar, {type: "slr"});
     const data = parser_generator.generate();
     const blob = new Blob([data], {type: "text/plain"});
     const url = URL.createObjectURL(blob);
