@@ -6,14 +6,13 @@
 .main {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(73, 72, 62);
     font-size: 20px;
 }
 
-.main textarea {
-    background-color: rgb(73, 72, 62);
+.code {
     font-size: 20px;
-    color: whitesmoke;
-    width: 100%;
+    color: #323232;
+    width: 40%;
     height: auto;
+    border: 1px solid #323232;
 }

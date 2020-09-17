@@ -230,7 +230,50 @@ type StatementType = "SEMICOLON" |
 export class Statement {
     constructor(private statement:StatementType) {
         logger.parserLog("Statement:", [statement]);
+        if (statement instanceof Assignment) {
+            this.type = "Assignment";
+        }
+        if (statement instanceof FunctionCall) {
+            this.type = "FunctionCall";
+        }
+        if (statement instanceof Label) {
+            this.type = "Label";
+        }
+        if (statement instanceof Goto) {
+            this.type = "Goto";
+        }
+        if (statement instanceof DoBlock) {
+            this.type = "DoBlock";
+        }
+        if (statement instanceof WhileLoop) {
+            this.type = "WhileLoop";
+        }
+        if (statement instanceof RepeatLoop) {
+            this.type = "RepeatLoop";
+        }
+        if (statement instanceof If) {
+            this.type = "If";
+        }
+        if (statement instanceof ForLoop) {
+            this.type = "ForLoop";
+        }
+        if (statement instanceof RangeBasedFor) {
+            this.type = "RangeBasedFor";
+        }
+        if (statement instanceof Function) {
+            this.type = "Function";
+        }
+        if (statement instanceof LocalFunction) {
+            this.type = "LocalFunction";
+        }
+        if (statement instanceof LocalObjectAttributeListAssignment) {
+            this.type = "LocalObjectAttributeListAssignment";
+        }
+        if (statement === "SEMICOLON" || statement === "BREAK") {
+            this.type = statement;
+        }
     }
+    private type:string = "";
 }
 
 export class ReturnStatement {
@@ -329,7 +372,7 @@ interface IFieldList {
 }
 
 export class FieldList {
-    constructor(private field?:Field, private inner_fields?:IFieldList) {
+    constructor(field?:Field, inner_fields?:IFieldList) {
         logger.parserLog("FieldList:", [field, inner_fields]);
         if (field) {
             this.fields.push(field);
@@ -360,7 +403,37 @@ type ExpressionType = Number |
 export class Expression {
     constructor(private expression:ExpressionType) {
         logger.parserLog("Expression:", [expression]);
+        if (expression instanceof Number) {
+            this.type = "Number";
+            return;
+        }
+        if (expression instanceof LiteralString) {
+            this.type = "LiteralString";
+            return;
+        }
+        if (expression instanceof FunctionDef) {
+            this.type = "FunctionDef";
+            return;
+        }
+        if (expression instanceof TableConstructor) {
+            this.type = "TableConstructor";
+            return;
+        }
+        if (expression instanceof BinaryOp) {
+            this.type = "BinaryOp";
+            return;
+        }
+        if (expression instanceof UnaryOp) {
+            this.type = "UnaryOp";
+            return;
+        }
+        if (expression instanceof PrefixExpression) {
+            this.type = "PrefixExpression";
+            return;
+        }
+        this.type = expression;
     }
+    private type:string = "";
 }
 
 export class BinaryOp {
