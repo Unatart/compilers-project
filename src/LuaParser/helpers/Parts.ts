@@ -205,16 +205,16 @@ export class ObjectAttributeList {
     private object_attributes:ObjectAttribute[] = [];
 }
 
-export class LocalObjectAttributeListAssignment {
+export class LocalObjectAttributeList {
     constructor(private object_attributes:ObjectAttributeList, private expressions?:any) {
-        logger.parserLog("LocalObjectAttributeListAssignment:", [object_attributes, expressions]);
+        logger.parserLog("LocalObjectAttributeList:", [object_attributes, expressions]);
     }
 }
 
 type StatementType = "SEMICOLON" |
     "BREAK" |
     Assignment |
-    FunctionCall |
+    FuncCall |
     Label |
     Goto |
     DoBlock |
@@ -225,7 +225,7 @@ type StatementType = "SEMICOLON" |
     RangeBasedFor |
     Function |
     LocalFunction |
-    LocalObjectAttributeListAssignment;
+    LocalObjectAttributeList;
 
 export class Statement {
     constructor(private statement:StatementType) {
@@ -233,8 +233,8 @@ export class Statement {
         if (statement instanceof Assignment) {
             this.type = "Assignment";
         }
-        if (statement instanceof FunctionCall) {
-            this.type = "FunctionCall";
+        if (statement instanceof FuncCall) {
+            this.type = "FuncCall";
         }
         if (statement instanceof Label) {
             this.type = "Label";
@@ -266,8 +266,8 @@ export class Statement {
         if (statement instanceof LocalFunction) {
             this.type = "LocalFunction";
         }
-        if (statement instanceof LocalObjectAttributeListAssignment) {
-            this.type = "LocalObjectAttributeListAssignment";
+        if (statement instanceof LocalObjectAttributeList) {
+            this.type = "LocalObjectAttributeList";
         }
         if (statement === "SEMICOLON" || statement === "BREAK") {
             this.type = statement;
@@ -331,7 +331,7 @@ export class PrefixExpression {
     }
 }
 
-export class FunctionCall {
+export class FuncCall {
     constructor(private prefix:PrefixExpression, private args:Args, private name?:Name) {
         logger.parserLog("FuncCall:", [prefix, args, name]);
     }
@@ -343,7 +343,7 @@ export class Args {
     }
 }
 
-export class FunctionDef {
+export class FuncDef {
     constructor(private body:FuncBody) {
         logger.parserLog("FuncDef:", [body]);
     }
@@ -361,9 +361,9 @@ export class ParList {
     }
 }
 
-export class TableConstructor {
+export class Table {
     constructor(private fieldlist?:FieldList) {
-        logger.parserLog("TableConstructor:", [fieldlist]);
+        logger.parserLog("Table:", [fieldlist]);
     }
 }
 
@@ -393,8 +393,8 @@ export class Field {
 
 type ExpressionType = Number |
     LiteralString |
-    FunctionDef |
-    TableConstructor |
+    FuncDef |
+    Table |
     BinaryOp |
     UnaryOp |
     PrefixExpression |
@@ -411,12 +411,12 @@ export class Expression {
             this.type = "LiteralString";
             return;
         }
-        if (expression instanceof FunctionDef) {
-            this.type = "FunctionDef";
+        if (expression instanceof FuncDef) {
+            this.type = "FuncDef";
             return;
         }
-        if (expression instanceof TableConstructor) {
-            this.type = "TableConstructor";
+        if (expression instanceof Table) {
+            this.type = "Table";
             return;
         }
         if (expression instanceof BinaryOp) {

@@ -6,30 +6,79 @@ describe("Lexer", () => {
     const Lexer = lexer();
     it("токенизирует выражение присвоения", () => {
         Lexer.setInput("result = (a + b) * 12 + (c / 3)");
-        const result_tokens:TokensTypes[] = [];
+        const result_tokens:{
+            token: TokensTypes,
+            lexeme: string
+        }[] = [];
         while (true) {
             const token = Lexer.lex();
+            const lexeme = Lexer.yytext;
             if (!token) {
                 break;
             }
-            result_tokens.push(token);
+            result_tokens.push({ token, lexeme });
         }
         expect(result_tokens).toEqual([
-            "NAME",
-            "ASSIGNMENT",
-            "ROUND_LBRACKET",
-            "NAME",
-            "PLUS",
-            "NAME",
-            "ROUND_RBRACKET",
-            "TIMES",
-            "NUMBER",
-            "PLUS",
-            "ROUND_LBRACKET",
-            "NAME",
-            "DIVIDE",
-            "NUMBER",
-            "ROUND_RBRACKET"
+            {
+                "lexeme": "result",
+                "token": "NAME"
+            },
+            {
+                "lexeme": "=",
+                "token": "ASSIGNMENT"
+            },
+            {
+                "lexeme": "(",
+                "token": "ROUND_LBRACKET"
+            },
+            {
+                "lexeme": "a",
+                "token": "NAME"
+            },
+            {
+                "lexeme": "+",
+                "token": "PLUS"
+            },
+            {
+                "lexeme": "b",
+                "token": "NAME"
+            },
+            {
+                "lexeme": ")",
+                "token": "ROUND_RBRACKET"
+            },
+            {
+                "lexeme": "*",
+                "token": "TIMES"
+            },
+            {
+                "lexeme": 12,
+                "token": "NUMBER"
+            },
+            {
+                "lexeme": "+",
+                "token": "PLUS"
+            },
+            {
+                "lexeme": "(",
+                "token": "ROUND_LBRACKET"
+            },
+            {
+                "lexeme": "c",
+                "token": "NAME"
+            },
+            {
+                "lexeme": "/",
+                "token": "DIVIDE"
+            },
+            {
+                "lexeme": 3,
+                "token": "NUMBER"
+            },
+            {
+                "lexeme": ")",
+                "token": "ROUND_RBRACKET"
+            }
         ]);
     });
 

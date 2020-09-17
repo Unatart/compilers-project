@@ -9,7 +9,8 @@ export const while_tree = {
                                 {
                                     "expression": {
                                         "number": 1
-                                    }
+                                    },
+                                    "type": "Number"
                                 }
                             ]
                         },
@@ -23,7 +24,8 @@ export const while_tree = {
                                 }
                             ]
                         }
-                    }
+                    },
+                    "type": "LocalObjectAttributeList"
                 },
                 {
                     "statement": {
@@ -46,7 +48,8 @@ export const while_tree = {
                                                                                         "name": "i"
                                                                                     }
                                                                                 }
-                                                                            }
+                                                                            },
+                                                                            "type": "PrefixExpression"
                                                                         },
                                                                         "object_name": {
                                                                             "expression": {
@@ -57,7 +60,8 @@ export const while_tree = {
                                                                         }
                                                                     }
                                                                 }
-                                                            }
+                                                            },
+                                                            "type": "PrefixExpression"
                                                         }
                                                     ]
                                                 }
@@ -69,7 +73,8 @@ export const while_tree = {
                                                     }
                                                 }
                                             }
-                                        }
+                                        },
+                                        "type": "FuncCall"
                                     },
                                     {
                                         "statement": {
@@ -84,15 +89,18 @@ export const while_tree = {
                                                                             "name": "i"
                                                                         }
                                                                     }
-                                                                }
+                                                                },
+                                                                "type": "PrefixExpression"
                                                             },
                                                             "operation": "+",
                                                             "right": {
                                                                 "expression": {
                                                                     "number": 1
-                                                                }
+                                                                },
+                                                                "type": "Number"
                                                             }
-                                                        }
+                                                        },
+                                                        "type": "BinaryOp"
                                                     }
                                                 ]
                                             },
@@ -105,7 +113,8 @@ export const while_tree = {
                                                     }
                                                 ]
                                             }
-                                        }
+                                        },
+                                        "type": "Assignment"
                                     }
                                 ]
                             }
@@ -121,7 +130,8 @@ export const while_tree = {
                                                         "name": "i"
                                                     }
                                                 }
-                                            }
+                                            },
+                                            "type": "PrefixExpression"
                                         },
                                         "object_name": {
                                             "expression": {
@@ -132,9 +142,11 @@ export const while_tree = {
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "type": "PrefixExpression"
                         }
-                    }
+                    },
+                    "type": "WhileLoop"
                 }
             ]
         }

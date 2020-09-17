@@ -62,7 +62,7 @@ export const grammar = {
             ["FOR name ASSIGNMENT expression COMMA expression COMMA expression DO block END", "$$ = new yy.ForLoop($2, $4, $6, $10, $8)"],
             ["FOR name ASSIGNMENT expression COMMA expression DO block END", "$$ = new yy.ForLoop($2, $4, $6, $8)"]
         ],
-        "ranged_based_for": [["FOR name_list IN expression_list DO block END", "$$ = new yy.RangeBasedFor($2, $4, $6)"]],
+        "range_based_for": [["FOR name_list IN expression_list DO block END", "$$ = new yy.RangeBasedFor($2, $4, $6)"]],
         "function": [["FUNCTION funcname funcbody", "$$ = new yy.Function($2, $3)"]],
         "local_function": [["LOCAL FUNCTION name funcbody", "$$ = new yy.LocalFunction($3, $4)"]],
         "attribute": [
@@ -74,14 +74,14 @@ export const grammar = {
             ["object_attribute COMMA object_attribute_list", "$$ = new yy.ObjectAttributeList($1, $3)"],
             ["object_attribute", "$$ = new yy.ObjectAttributeList($1)"]
         ],
-        "local_object_attribute_list_assignment": [
-            ["LOCAL object_attribute_list ASSIGNMENT expression_list", "$$ = new yy.LocalObjectAttributeListAssignment($2, $4)"],
-            ["LOCAL object_attribute_list", "$$ = new yy.LocalObjectAttributeListAssignment($2)"]
+        "local_object_attribute_list": [
+            ["LOCAL object_attribute_list ASSIGNMENT expression_list", "$$ = new yy.LocalObjectAttributeList($2, $4)"],
+            ["LOCAL object_attribute_list", "$$ = new yy.LocalObjectAttributeList($2)"]
         ],
         "statement": [
             ["SEMICOLON", "$$ = new yy.Statement($1)"],
             ["assignment", "$$ = new yy.Statement($1)"],
-            ["functioncall", "$$ = new yy.Statement($1)"],
+            ["funccall", "$$ = new yy.Statement($1)"],
             ["label", "$$ = new yy.Statement($1)"],
             ["BREAK", "$$ = new yy.Statement($1)"],
             ["goto", "$$ = new yy.Statement($1)"],
@@ -90,10 +90,10 @@ export const grammar = {
             ["repeat_loop", "$$ = new yy.Statement($1)"],
             ["if", "$$ = new yy.Statement($1)"],
             ["for_loop", "$$ = new yy.Statement($1)"],
-            ["ranged_based_for", "$$ = new yy.Statement($1)"],
+            ["range_based_for", "$$ = new yy.Statement($1)"],
             ["function", "$$ = new yy.Statement($1)"],
             ["local_function", "$$ = new yy.Statement($1)"],
-            ["local_object_attribute_list_assignment", "$$ = new yy.Statement($1)"],
+            ["local_object_attribute_list", "$$ = new yy.Statement($1)"],
         ],
         "return_statement": [
             ["RETURN expression_list SEMICOLON", "$$ = new yy.ReturnStatement($2)"],
@@ -120,20 +120,20 @@ export const grammar = {
         ],
         "prefixexp": [
             ["variable", "$$ = new yy.PrefixExpression($1)"],
-            ["functioncall", "$$ = new yy.PrefixExpression($1)"],
+            ["funccall", "$$ = new yy.PrefixExpression($1)"],
             ["ROUND_LBRACKET expression ROUND_RBRACKET", "$$ = new yy.PrefixExpression($2)"]
         ],
-        "functioncall": [
-            ["prefixexp args", "$$ = new yy.FunctionCall($1, $2)"],
-            ["prefixexp COLON name args", "$$ = new yy.FunctionCall($1, $4, $3)"]
+        "funccall": [
+            ["prefixexp args", "$$ = new yy.FuncCall($1, $2)"],
+            ["prefixexp COLON name args", "$$ = new yy.FuncCall($1, $4, $3)"]
         ],
         "args": [
             ["ROUND_LBRACKET expression_list ROUND_RBRACKET", "$$ = new yy.Args($2)"],
             ["ROUND_LBRACKET ROUND_RBRACKET", "$$ = new yy.Args()"],
-            ["table_constructor", "$$ = new yy.Args($1)"],
+            ["table", "$$ = new yy.Args($1)"],
             ["literal_string", "$$ = new yy.Args($1)"]
         ],
-        "functiondef": [["FUNCTION funcbody", "$$ = new yy.FunctionDef($2)"]],
+        "funcdef": [["FUNCTION funcbody", "$$ = new yy.FuncDef($2)"]],
         "funcbody": [
             ["ROUND_LBRACKET parlist ROUND_RBRACKET block END", "$$ = new yy.FuncBody($4, $2)"],
             ["ROUND_LBRACKET ROUND_RBRACKET block END", "$$ = new yy.FuncBody($3)"]
@@ -143,9 +143,9 @@ export const grammar = {
             ["name_list", "$$ = new yy.ParList(false, $1)"],
             ["VARARG", "$$ = new yy.ParList(true)"]
         ],
-        "table_constructor": [
-            ["LBRACE fieldlist RBRACE", "$$ = new yy.TableConstructor($2)"],
-            ["LBRACE RBRACE", "$$ = new yy.TableConstructor()"]
+        "table": [
+            ["LBRACE fieldlist RBRACE", "$$ = new yy.Table($2)"],
+            ["LBRACE RBRACE", "$$ = new yy.Table()"]
         ],
         "inner_fieldlist": [
             ["fieldsep field inner_fieldlist", "$$ = new yy.FieldList($2, $3)"],
@@ -167,8 +167,8 @@ export const grammar = {
             ["number", "$$ = new yy.Expression($1)"],
             ["literal_string", "$$ = new yy.Expression($1)"],
             ["VARARG", "$$ = new yy.Expression($1)"],
-            ["functiondef", "$$ = new yy.Expression($1)"],
-            ["table_constructor", "$$ = new yy.Expression($1)"],
+            ["funcdef", "$$ = new yy.Expression($1)"],
+            ["table", "$$ = new yy.Expression($1)"],
             ["binop", "$$ = new yy.Expression($1)"],
             ["unop", "$$ = new yy.Expression($1)"],
             ["prefixexp", "$$ = new yy.Expression($1)"]

@@ -17,6 +17,7 @@ export default class App extends React.Component<{}, IAppState> {
 
   public constructor(props:any) {
     super(props);
+    // createParser();  // for parser creation
     this.lua_parser = LuaParser;
     this.lua_parser.parser.lexer = lexer();
     this.lua_parser.parser.yy = require("../src/LuaParser/helpers/Parts");
@@ -49,7 +50,12 @@ export default class App extends React.Component<{}, IAppState> {
     event.preventDefault();
     if (event.keyCode === 13) {
       if (this.state.statement) {
-        this.setState({ result: this.lua_parser.parse(this.state.statement) });
+        try {
+            const result = this.lua_parser.parse(this.state.statement);
+            this.setState({ result: result });
+        } catch (error) {
+            console.log(error.message);
+        }
       }
     }
   }

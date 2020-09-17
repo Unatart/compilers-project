@@ -22,7 +22,8 @@ export const function_tree = {
                                                                 "name": "sum"
                                                             }
                                                         }
-                                                    }
+                                                    },
+                                                    "type": "PrefixExpression"
                                                 }
                                             ]
                                         }
@@ -36,7 +37,8 @@ export const function_tree = {
                                                             {
                                                                 "expression": {
                                                                     "number": 0
-                                                                }
+                                                                },
+                                                                "type": "Number"
                                                             }
                                                         ]
                                                     },
@@ -50,7 +52,8 @@ export const function_tree = {
                                                             }
                                                         ]
                                                     }
-                                                }
+                                                },
+                                                "type": "LocalObjectAttributeList"
                                             },
                                             {
                                                 "statement": {
@@ -70,7 +73,8 @@ export const function_tree = {
                                                                                                         "name": "sum"
                                                                                                     }
                                                                                                 }
-                                                                                            }
+                                                                                            },
+                                                                                            "type": "PrefixExpression"
                                                                                         },
                                                                                         "operation": "+",
                                                                                         "right": {
@@ -80,9 +84,11 @@ export const function_tree = {
                                                                                                         "name": "v"
                                                                                                     }
                                                                                                 }
-                                                                                            }
+                                                                                            },
+                                                                                            "type": "PrefixExpression"
                                                                                         }
-                                                                                    }
+                                                                                    },
+                                                                                    "type": "BinaryOp"
                                                                                 }
                                                                             ]
                                                                         },
@@ -95,7 +101,8 @@ export const function_tree = {
                                                                                 }
                                                                             ]
                                                                         }
-                                                                    }
+                                                                    },
+                                                                    "type": "Assignment"
                                                                 }
                                                             ]
                                                         }
@@ -115,7 +122,8 @@ export const function_tree = {
                                                                                                     "name": "a"
                                                                                                 }
                                                                                             }
-                                                                                        }
+                                                                                        },
+                                                                                        "type": "PrefixExpression"
                                                                                     }
                                                                                 ]
                                                                             }
@@ -128,7 +136,8 @@ export const function_tree = {
                                                                             }
                                                                         }
                                                                     }
-                                                                }
+                                                                },
+                                                                "type": "PrefixExpression"
                                                             }
                                                         ]
                                                     },
@@ -142,7 +151,8 @@ export const function_tree = {
                                                             }
                                                         ]
                                                     }
-                                                }
+                                                },
+                                                "type": "RangeBasedFor"
                                             }
                                         ]
                                     }
@@ -159,7 +169,8 @@ export const function_tree = {
                                 }
                             }
                         }
-                    }
+                    },
+                    "type": "Function"
                 },
                 {
                     "statement": {
@@ -173,7 +184,8 @@ export const function_tree = {
                                                     "name": "b"
                                                 }
                                             }
-                                        }
+                                        },
+                                        "type": "PrefixExpression"
                                     }
                                 ]
                             }
@@ -185,7 +197,8 @@ export const function_tree = {
                                 }
                             }
                         }
-                    }
+                    },
+                    "type": "FuncCall"
                 }
             ]
         }

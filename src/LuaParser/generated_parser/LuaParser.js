@@ -75,7 +75,7 @@ var parser = (function(){
     var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,8,21,24,29,33,38,58,77],$V1=[2,2],$V2=[1,22],$V3=[1,7],$V4=[1,27],$V5=[1,28],$V6=[1,29],$V7=[1,26],$V8=[1,30],$V9=[1,31],$Va=[1,32],$Vb=[1,33],$Vc=[1,11],$Vd=[1,25],$Ve=[1,35],$Vf=[1,38],$Vg=[1,6,24,29,33,38],$Vh=[1,6,24,29,33,38,58],$Vi=[1,6,9,23,24,26,28,29,31,33,37,38,40,44,48,57,58,59,67,107],$Vj=[2,68],$Vk=[2,41],$Vl=[1,46],$Vm=[1,44],$Vn=[1,45],$Vo=[1,47],$Vp=[1,50],$Vq=[1,51],$Vr=[1,68],$Vs=[1,61],$Vt=[1,56],$Vu=[1,57],$Vv=[1,58],$Vw=[1,69],$Vx=[1,72],$Vy=[1,70],$Vz=[1,71],$VA=[1,67],$VB=[2,67],$VC=[1,6,8,9,21,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,61,62,65,66,67,68,75,77,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,107,108],$VD=[2,65],$VE=[1,6,8,9,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,61,62,65,66,67,68,75,77,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,107,108],$VF=[1,100],$VG=[1,119],$VH=[1,121],$VI=[1,106],$VJ=[1,107],$VK=[1,108],$VL=[1,109],$VM=[1,110],$VN=[1,111],$VO=[1,112],$VP=[1,113],$VQ=[1,114],$VR=[1,115],$VS=[1,116],$VT=[1,117],$VU=[1,118],$VV=[1,120],$VW=[1,122],$VX=[1,123],$VY=[1,124],$VZ=[1,125],$V_=[1,126],$V$=[1,6,8,9,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,66,67,68,77,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,107],$V01=[1,128],$V11=[42,68],$V21=[2,16],$V31=[1,136],$V41=[1,140],$V51=[2,60],$V61=[1,6,9,21,23,24,26,28,29,31,33,37,38,40,44,48,57,58,59,67,107],$V71=[1,6,9,23,24,26,28,29,31,33,37,38,40,44,48,57,58,59,67,68,107],$V81=[1,21,23,24,26,28,29,31,33,37,38,40,44,48,57,58,59,67,77,107],$V91=[1,158],$Va1=[1,159],$Vb1=[6,8,9,77],$Vc1=[1,6,8,9,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,66,67,68,77,86,87,88,89,90,92,93,94,95,96,97,98,99,100,101,102,103,104,107],$Vd1=[1,6,8,9,21,23,24,26,28,29,31,33,37,38,40,44,48,57,58,59,67,107],$Ve1=[8,9,77],$Vf1=[44,65,67,74,75,77,80,81,82,87,94,105,106,107,108,109],$Vg1=[1,6,8,9,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,66,67,68,77,86,87,93,94,95,96,97,98,99,100,101,102,103,104,107],$Vh1=[1,6,8,9,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,66,67,68,77,93,94,95,96,97,99,100,101,102,103,104,107],$Vi1=[1,6,8,9,23,24,26,28,29,31,33,34,37,38,40,44,48,50,51,57,58,59,66,67,68,77,99,100,101,102,103,104,107],$Vj1=[1,8,9,21,23,24,26,28,29,31,37,38,40,44,48,57,58,59,67,77,107],$Vk1=[1,213],$Vl1=[24,38];
     var parser = {trace: function trace() {},
         yy: {},
-        symbols_: {"error":2,"start":3,"chunk":4,"empty":5,"console.log(true)":6,"fieldsep":7,"COMMA":8,"SEMICOLON":9,"block":10,"statement_list":11,"return_statement":12,"statement":13,"variable_list":14,"variable":15,"expression_list":16,"expression":17,"name_list":18,"name":19,"assignment":20,"ASSIGNMENT":21,"do_block":22,"DO":23,"END":24,"while_loop":25,"WHILE":26,"repeat_loop":27,"REPEAT":28,"UNTIL":29,"goto":30,"GOTO":31,"elseif_item":32,"ELSEIF":33,"THEN":34,"elseif_list":35,"if":36,"IF":37,"ELSE":38,"for_loop":39,"FOR":40,"ranged_based_for":41,"IN":42,"function":43,"FUNCTION":44,"funcname":45,"funcbody":46,"local_function":47,"LOCAL":48,"attribute":49,"LESS_THAN":50,"GREATER_THAN":51,"object_attribute":52,"object_attribute_list":53,"local_object_attribute_list_assignment":54,"functioncall":55,"label":56,"BREAK":57,"RETURN":58,"DOUBLE_COLON":59,"name_chain":60,"DOT":61,"COLON":62,"object_field":63,"prefixexp":64,"SQUARE_LBRACKET":65,"SQUARE_RBRACKET":66,"ROUND_LBRACKET":67,"ROUND_RBRACKET":68,"args":69,"table_constructor":70,"literal_string":71,"functiondef":72,"parlist":73,"VARARG":74,"LBRACE":75,"fieldlist":76,"RBRACE":77,"inner_fieldlist":78,"field":79,"NIL":80,"FALSE":81,"TRUE":82,"number":83,"binop":84,"unop":85,"PLUS":86,"MINUS":87,"TIMES":88,"DIVIDE":89,"INT_DIVIDE":90,"POW":91,"MOD":92,"BITWISE_AND":93,"BITWISE_NOT":94,"BITWISE_OR":95,"RSHIFT":96,"LSHIFT":97,"CONCAT":98,"LESS_OR_EQUAL":99,"GREATER_OR_EQUAL":100,"EQUALS":101,"NOT_EQUALS":102,"AND":103,"OR":104,"NOT":105,"LENGTH":106,"NAME":107,"LITERAL_STRING":108,"NUMBER":109,"$accept":0,"$end":1},
+        symbols_: {"error":2,"start":3,"chunk":4,"empty":5,"console.log(true)":6,"fieldsep":7,"COMMA":8,"SEMICOLON":9,"block":10,"statement_list":11,"return_statement":12,"statement":13,"variable_list":14,"variable":15,"expression_list":16,"expression":17,"name_list":18,"name":19,"assignment":20,"ASSIGNMENT":21,"do_block":22,"DO":23,"END":24,"while_loop":25,"WHILE":26,"repeat_loop":27,"REPEAT":28,"UNTIL":29,"goto":30,"GOTO":31,"elseif_item":32,"ELSEIF":33,"THEN":34,"elseif_list":35,"if":36,"IF":37,"ELSE":38,"for_loop":39,"FOR":40,"range_based_for":41,"IN":42,"function":43,"FUNCTION":44,"funcname":45,"funcbody":46,"local_function":47,"LOCAL":48,"attribute":49,"LESS_THAN":50,"GREATER_THAN":51,"object_attribute":52,"object_attribute_list":53,"local_object_attribute_list":54,"funccall":55,"label":56,"BREAK":57,"RETURN":58,"DOUBLE_COLON":59,"name_chain":60,"DOT":61,"COLON":62,"object_field":63,"prefixexp":64,"SQUARE_LBRACKET":65,"SQUARE_RBRACKET":66,"ROUND_LBRACKET":67,"ROUND_RBRACKET":68,"args":69,"table":70,"literal_string":71,"funcdef":72,"parlist":73,"VARARG":74,"LBRACE":75,"fieldlist":76,"RBRACE":77,"inner_fieldlist":78,"field":79,"NIL":80,"FALSE":81,"TRUE":82,"number":83,"binop":84,"unop":85,"PLUS":86,"MINUS":87,"TIMES":88,"DIVIDE":89,"INT_DIVIDE":90,"POW":91,"MOD":92,"BITWISE_AND":93,"BITWISE_NOT":94,"BITWISE_OR":95,"RSHIFT":96,"LSHIFT":97,"CONCAT":98,"LESS_OR_EQUAL":99,"GREATER_OR_EQUAL":100,"EQUALS":101,"NOT_EQUALS":102,"AND":103,"OR":104,"NOT":105,"LENGTH":106,"NAME":107,"LITERAL_STRING":108,"NUMBER":109,"$accept":0,"$end":1},
         terminals_: {2:"error",6:"console.log(true)",8:"COMMA",9:"SEMICOLON",21:"ASSIGNMENT",23:"DO",24:"END",26:"WHILE",28:"REPEAT",29:"UNTIL",31:"GOTO",33:"ELSEIF",34:"THEN",37:"IF",38:"ELSE",40:"FOR",42:"IN",44:"FUNCTION",48:"LOCAL",50:"LESS_THAN",51:"GREATER_THAN",57:"BREAK",58:"RETURN",59:"DOUBLE_COLON",61:"DOT",62:"COLON",65:"SQUARE_LBRACKET",66:"SQUARE_RBRACKET",67:"ROUND_LBRACKET",68:"ROUND_RBRACKET",74:"VARARG",75:"LBRACE",77:"RBRACE",80:"NIL",81:"FALSE",82:"TRUE",86:"PLUS",87:"MINUS",88:"TIMES",89:"DIVIDE",90:"INT_DIVIDE",91:"POW",92:"MOD",93:"BITWISE_AND",94:"BITWISE_NOT",95:"BITWISE_OR",96:"RSHIFT",97:"LSHIFT",98:"CONCAT",99:"LESS_OR_EQUAL",100:"GREATER_OR_EQUAL",101:"EQUALS",102:"NOT_EQUALS",103:"AND",104:"OR",105:"NOT",106:"LENGTH",107:"NAME",108:"LITERAL_STRING",109:"NUMBER"},
         productions_: [0,[3,1],[5,0],[5,1],[7,1],[7,1],[4,1],[10,2],[10,1],[11,2],[11,1],[14,3],[14,1],[16,3],[16,1],[18,3],[18,1],[20,3],[22,3],[25,5],[27,4],[30,2],[32,4],[35,2],[35,1],[36,8],[36,6],[39,11],[39,9],[41,7],[43,3],[47,4],[49,3],[49,1],[52,2],[53,3],[53,1],[54,4],[54,2],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[12,3],[12,2],[12,2],[12,1],[56,3],[60,3],[60,1],[45,3],[45,1],[63,4],[63,3],[15,1],[15,1],[64,1],[64,1],[64,3],[55,2],[55,4],[69,3],[69,2],[69,1],[69,1],[72,2],[46,5],[46,4],[73,3],[73,1],[73,1],[70,3],[70,2],[78,3],[78,1],[76,3],[76,2],[79,5],[79,3],[79,1],[17,1],[17,1],[17,1],[17,1],[17,1],[17,1],[17,1],[17,1],[17,1],[17,1],[17,1],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[84,3],[85,2],[85,2],[85,2],[85,2],[19,1],[71,1],[83,1]],
         performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
@@ -186,10 +186,10 @@ var parser = (function(){
                     this.$ = new yy.ObjectAttributeList($$[$0])
                     break;
                 case 37:
-                    this.$ = new yy.LocalObjectAttributeListAssignment($$[$0-2], $$[$0])
+                    this.$ = new yy.LocalObjectAttributeList($$[$0-2], $$[$0])
                     break;
                 case 38:
-                    this.$ = new yy.LocalObjectAttributeListAssignment($$[$0])
+                    this.$ = new yy.LocalObjectAttributeList($$[$0])
                     break;
                 case 39: case 40: case 41: case 42: case 43: case 44: case 45: case 46: case 47: case 48: case 49: case 50: case 51: case 52: case 53:
                     this.$ = new yy.Statement($$[$0])
@@ -234,10 +234,10 @@ var parser = (function(){
                     this.$ = new yy.PrefixExpression($$[$0-1])
                     break;
                 case 70:
-                    this.$ = new yy.FunctionCall($$[$0-1], $$[$0])
+                    this.$ = new yy.FuncCall($$[$0-1], $$[$0])
                     break;
                 case 71:
-                    this.$ = new yy.FunctionCall($$[$0-3], $$[$0], $$[$0-1])
+                    this.$ = new yy.FuncCall($$[$0-3], $$[$0], $$[$0-1])
                     break;
                 case 72:
                     this.$ = new yy.Args($$[$0-1])
@@ -249,7 +249,7 @@ var parser = (function(){
                     this.$ = new yy.Args($$[$0])
                     break;
                 case 76:
-                    this.$ = new yy.FunctionDef($$[$0])
+                    this.$ = new yy.FuncDef($$[$0])
                     break;
                 case 77:
                     this.$ = new yy.FuncBody($$[$0-1], $$[$0-3])
@@ -267,10 +267,10 @@ var parser = (function(){
                     this.$ = new yy.ParList(true)
                     break;
                 case 82:
-                    this.$ = new yy.TableConstructor($$[$0-1])
+                    this.$ = new yy.Table($$[$0-1])
                     break;
                 case 83:
-                    this.$ = new yy.TableConstructor()
+                    this.$ = new yy.Table()
                     break;
                 case 84: case 87:
                     this.$ = new yy.FieldList($$[$0-1], $$[$0])

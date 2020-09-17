@@ -7,7 +7,8 @@ export const table_tree = {
                         "expression_list": {
                             "expressions": [
                                 {
-                                    "expression": {}
+                                    "expression": {},
+                                    "type": "Table"
                                 }
                             ]
                         },
@@ -20,7 +21,8 @@ export const table_tree = {
                                 }
                             ]
                         }
-                    }
+                    },
+                    "type": "Assignment"
                 },
                 {
                     "statement": {
@@ -29,7 +31,8 @@ export const table_tree = {
                                 {
                                     "expression": {
                                         "literal_string": "\"x\""
-                                    }
+                                    },
+                                    "type": "LiteralString"
                                 }
                             ]
                         },
@@ -42,7 +45,8 @@ export const table_tree = {
                                 }
                             ]
                         }
-                    }
+                    },
+                    "type": "Assignment"
                 },
                 {
                     "statement": {
@@ -51,7 +55,8 @@ export const table_tree = {
                                 {
                                     "expression": {
                                         "number": 10
-                                    }
+                                    },
+                                    "type": "Number"
                                 }
                             ]
                         },
@@ -66,7 +71,8 @@ export const table_tree = {
                                                         "name": "k"
                                                     }
                                                 }
-                                            }
+                                            },
+                                            "type": "PrefixExpression"
                                         },
                                         "object_name": {
                                             "expression": {
@@ -79,7 +85,8 @@ export const table_tree = {
                                 }
                             ]
                         }
-                    }
+                    },
+                    "type": "Assignment"
                 },
                 {
                     "statement": {
@@ -88,7 +95,8 @@ export const table_tree = {
                                 {
                                     "expression": {
                                         "literal_string": "\"great\""
-                                    }
+                                    },
+                                    "type": "LiteralString"
                                 }
                             ]
                         },
@@ -99,7 +107,8 @@ export const table_tree = {
                                         "field": {
                                             "expression": {
                                                 "number": 20
-                                            }
+                                            },
+                                            "type": "Number"
                                         },
                                         "object_name": {
                                             "expression": {
@@ -112,7 +121,8 @@ export const table_tree = {
                                 }
                             ]
                         }
-                    }
+                    },
+                    "type": "Assignment"
                 },
                 {
                     "statement": {
@@ -126,7 +136,8 @@ export const table_tree = {
                                                     "field": {
                                                         "expression": {
                                                             "literal_string": "\"x\""
-                                                        }
+                                                        },
+                                                        "type": "LiteralString"
                                                     },
                                                     "object_name": {
                                                         "expression": {
@@ -137,7 +148,8 @@ export const table_tree = {
                                                     }
                                                 }
                                             }
-                                        }
+                                        },
+                                        "type": "PrefixExpression"
                                     }
                                 ]
                             }
@@ -149,7 +161,8 @@ export const table_tree = {
                                 }
                             }
                         }
-                    }
+                    },
+                    "type": "FuncCall"
                 }
             ]
         }
